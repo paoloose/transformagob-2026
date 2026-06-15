@@ -39,6 +39,10 @@ Map center: -12.071228, -77.160295
 
 Each station has its own prerecorded camera video and a subset of species assigned to it.
 
+## Visual Direction
+
+Color palette inspired by La Punta's ocean and coast: deep blues, sandy beiges, seafoam greens, warm sunset oranges. Think wetland water, rocky shore, golden sand, and the birds themselves. The UI should feel like the place — coastal, natural, alive.
+
 ## App Shell
 
 4-tab bottom navigation:
