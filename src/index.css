@@ -30,7 +30,7 @@
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
-  background: var(--sand-light);
+  background: #000;
   color: var(--gray-800);
   -webkit-font-smoothing: antialiased;
 }
@@ -101,19 +101,14 @@ body {
 }
 
 .species-card.undiscovered {
-  cursor: default;
-  opacity: 0.6;
+  opacity: 0.75;
 }
 
-.species-card.undiscovered .species-card-name {
-  color: var(--gray-500);
+.species-card-grayscale {
+  filter: grayscale(1) brightness(0.85);
 }
 
-.species-card-blurred {
-  filter: grayscale(1) blur(2px) brightness(0.8);
-}
-
-.species-card:active:not(.undiscovered) {
+.species-card:active {
   transform: scale(0.97);
 }
 
@@ -288,6 +283,20 @@ body {
 .explorar-page {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+.explorar-page .zone-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  flex-shrink: 0;
+}
+
+.explorar-scroll {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .spotted-section {
@@ -429,17 +438,33 @@ body {
   font-size: 0.85rem;
 }
 
+.discover-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
 .discover-btn {
-  width: 100%;
-  padding: 0.75rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 0.5rem;
   border-radius: 12px;
   border: none;
-  background: var(--seafoam);
   color: white;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 1rem;
+}
+
+.discover-btn-photo {
+  background: var(--seafoam);
+}
+
+.discover-btn-record {
+  background: var(--ocean-bar);
 }
 
 .discovered-label {
@@ -450,14 +475,108 @@ body {
   font-size: 1rem;
 }
 
-.toggle-btn {
-  width: 100%;
-  padding: 0.5rem;
+.species-detail-model-toggle {
+  padding: 0 1rem;
+}
+
+.ar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: calc(100% - 2rem);
+  margin: 0.75rem 1rem;
+  padding: 0.75rem;
   border: none;
-  background: var(--ocean-deep);
+  border-radius: 12px;
+  background: #111;
   color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 0.8rem;
+  transition: transform 0.15s;
+}
+
+.ar-btn:active {
+  transform: scale(0.97);
+}
+
+.ar-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.ar-viewer-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ar-viewer-model {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}
+
+.ar-close-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 110;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ar-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+  pointer-events: none;
+}
+
+.ar-start-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 16px;
+  background: var(--seafoam);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(77, 191, 160, 0.4);
+}
+
+.ar-start-btn:active {
+  transform: translate(-50%, -50%) scale(0.97);
 }
 
 .mission-tabs {
@@ -580,6 +699,37 @@ body {
   font-size: 1.5rem !important;
 }
 
+.capture-btn-recording {
+  background: rgba(239,68,68,0.6) !important;
+  border-color: #ef4444 !important;
+  animation: pulse-record 1s ease-in-out infinite;
+}
+
+.camera-close-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5) !important;
+}
+
+.countdown-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 5rem;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0,0,0,0.5);
+  pointer-events: none;
+}
+
+@keyframes pulse-record {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
 .identifying-screen {
   display: flex;
   flex-direction: column;
@@ -606,36 +756,84 @@ body {
 .encounter-animation {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  animation: encounter-bg-in 0.3s ease-out;
+}
+
+.encounter-flash {
+  position: absolute;
+  inset: 0;
+  background: white;
+  animation: flash 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes flash {
+  0% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+@keyframes encounter-bg-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .encounter-card {
   text-align: center;
-  animation: encounter-pop 0.5s ease-out;
+  animation: encounter-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  position: relative;
+  z-index: 1;
 }
 
 .encounter-card img {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   object-fit: cover;
   border-radius: 16px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 0 40px rgba(77, 191, 160, 0.5);
 }
 
 .encounter-card h2 {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.encounter-scientific {
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.encounter-stamp {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--seafoam);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 20px rgba(77, 191, 160, 0.8), 0 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
+  animation: stamp-slam 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
 }
 
 @keyframes encounter-pop {
-  0% { transform: scale(0); opacity: 0; }
-  80% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); }
+  0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+  60% { transform: scale(1.05) rotate(2deg); opacity: 1; }
+  80% { transform: scale(0.98) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes stamp-slam {
+  0% { transform: scale(3) rotate(-15deg); opacity: 0; }
+  60% { transform: scale(0.95) rotate(2deg); opacity: 1; }
+  80% { transform: scale(1.05) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
 .busca-tu-ave {
@@ -962,9 +1160,31 @@ body {
 }
 
 .zone-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  /* sticky is handled in .explorar-page .zone-header */
+}
+
+.station-marker-icon {
+  background: none !important;
+  border: none !important;
+}
+
+.station-marker {
+  border-radius: 50%;
+  animation: marker-pulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 200, 0, 0.7));
+}
+
+.station-marker-active {
+  filter: drop-shadow(0 0 10px rgba(255, 200, 0, 1));
+}
+
+.station-marker img {
+  border-radius: 50%;
+}
+
+@keyframes marker-pulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(255, 200, 0, 0.7)); }
+  50% { filter: drop-shadow(0 0 14px rgba(255, 200, 0, 1)); }
 }
 
 .coleccion-page h2,
@@ -972,6 +1192,6 @@ body {
 .perfil-page > *:first-child {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 30;
   background: var(--sand-light);
 }

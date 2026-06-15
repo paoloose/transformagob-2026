@@ -17,30 +17,12 @@ export function getBirdImage(bird: Bird, index: number = 0): string {
   return `/db/images/${bird.images[index]}`;
 }
 
-export function getBirdModelPath(bird: Bird): string | null {
-  const modelSpecies = [
-    "Spatula cyanoptera",
-    "Phoenicopterus chilensis",
-    "Sula variegata",
-    "Phalacrocorax brasilianus",
-    "Pelecanus thagus",
-    "Ardea alba",
-    "Egretta thula",
-    "Larus belcheri",
-    "Numenius phaeopus",
-    "Calidris pusilla",
-  ];
-  if (modelSpecies.includes(bird.scientific_name)) {
-    const slug = bird.scientific_name.toLowerCase().replace(/\s+/g, "_");
-    return `/db/models/${slug}.glb`;
-  }
-  return null;
+export function getBirdModelPath(_bird: Bird): string {
+  return "/db/models/larus_belcheri.glb";
 }
 
-export function getBirdAudioPath(bird: Bird): string | null {
-  if (!bird.vocalization) return null;
-  const slug = bird.scientific_name.toLowerCase().replace(/\s+/g, "_");
-  return `/db/audio/${slug}.mp3`;
+export function getBirdAudioPath(_bird: Bird): string {
+  return "/db/audio/larus_belcheri.mp3";
 }
 
 export function deriveSizeCategory(bird: Bird): "pequeno" | "mediano" | "grande" {

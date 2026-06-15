@@ -15,16 +15,9 @@ const STORAGE_KEY = "arenilla-go-discoveries";
 const SEED_SPECIES = [
   "Larus belcheri",
   "Chroicocephalus cirrocephalus",
-  "Sula variegata",
-  "Phalacrocorax brasilianus",
   "Pelecanus thagus",
   "Ardea alba",
-  "Egretta thula",
-  "Numenius phaeopus",
-  "Charadrius vociferus",
-  "Calidris pusilla",
-  "Zenaida meloda",
-  "Haematopus palliatus",
+  "Sula variegata",
 ];
 
 function loadFromStorage(): Discovery[] {

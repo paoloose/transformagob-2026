@@ -14,7 +14,7 @@ const TAB_PAGES: Record<string, React.ComponentType> = {
 };
 
 export function AppShell() {
-  const { activeTab, setActiveTab, initStation } = useAppStore();
+  const { activeTab, tabKey, setActiveTab, initStation } = useAppStore();
 
   useEffect(() => {
     initStation();
@@ -25,7 +25,7 @@ export function AppShell() {
   return (
     <div className="app-shell">
       <main className="app-content">
-        <PageComponent />
+        <PageComponent key={`${activeTab}-${tabKey}`} />
       </main>
       <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
     </div>

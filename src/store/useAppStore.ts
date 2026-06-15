@@ -7,6 +7,7 @@ export type TabId = "explorar" | "misiones" | "coleccion" | "perfil";
 interface AppState {
   activeTab: TabId;
   currentStation: StationId | null;
+  tabKey: number;
   setActiveTab: (tab: TabId) => void;
   setCurrentStation: (id: StationId | null) => void;
   initStation: () => void;
@@ -14,8 +15,12 @@ interface AppState {
 
 export const useAppStore = create<AppState>((set) => ({
   activeTab: "explorar",
-  currentStation: null,
-  setActiveTab: (tab) => set({ activeTab: tab }),
+  currentStation: "A",
+  tabKey: 0,
+  setActiveTab: (tab) => set((state) => ({
+    activeTab: tab,
+    tabKey: state.activeTab === tab ? state.tabKey + 1 : state.tabKey,
+  })),
   setCurrentStation: (id) => set({ currentStation: id }),
   initStation: () => {
     const stationId = getStationFromUrl();

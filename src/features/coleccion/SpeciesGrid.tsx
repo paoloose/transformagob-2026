@@ -106,6 +106,7 @@ export function SpeciesGrid() {
                 key={bird.scientific_name}
                 bird={bird}
                 discovered={false}
+                onClick={() => setSelectedBird(bird)}
               />
             ))}
           </div>

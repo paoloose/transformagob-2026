@@ -2,34 +2,24 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { STATIONS, MAP_CENTER } from "../data/stations";
 import type { StationId } from "../types/station";
 import { useAppStore } from "../store/useAppStore";
+const TELESCOPE_ICON = "/telescope.png";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://unpkg.com/leaflet@1/dist/images/marker-icon-2x.png",
-  iconUrl: "https://unpkg.com/leaflet@1/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1/dist/images/marker-shadow.png",
-});
+function createStationIcon(size: number, active: boolean) {
+  return L.divIcon({
+    className: "station-marker-icon",
+    html: `<div class="station-marker${active ? " station-marker-active" : ""}" style="width:${size}px;height:${size}px;">
+      <img src="${TELESCOPE_ICON}" width="${size}" height="${size}" alt="" />
+    </div>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -(size / 2 + 4)],
+  });
+}
 
-const stationIcon = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1/dist/images/marker-shadow.png",
-  iconSize: [28, 40],
-  iconAnchor: [14, 40],
-  popupAnchor: [0, -40],
-});
-
-const activeStationIcon = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1/dist/images/marker-shadow.png",
-  iconSize: [34, 48],
-  iconAnchor: [17, 48],
-  popupAnchor: [0, -48],
-});
+const stationIcon = createStationIcon(36, false);
+const activeStationIcon = createStationIcon(44, true);
 
 interface MapViewProps {
   className?: string;
@@ -53,8 +43,8 @@ export function MapView({ className }: MapViewProps) {
       zoomControl={false}
     >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
       {STATIONS.map((station) => (
         <Marker

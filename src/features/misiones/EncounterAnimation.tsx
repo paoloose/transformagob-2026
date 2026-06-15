@@ -11,8 +11,10 @@ export function EncounterAnimation({ bird, onComplete }: EncounterAnimationProps
     <div className="encounter-animation" onClick={onComplete}>
       <div className="encounter-flash" />
       <div className="encounter-card">
+        <div className="encounter-stamp">¡DESCUBIERTA!</div>
         <img src={getBirdImage(bird, 0)} alt={bird.common_name} />
-        <h2>¡{bird.common_name}!</h2>
+        <h2>{bird.common_name}</h2>
+        <p className="encounter-scientific">{bird.scientific_name}</p>
       </div>
     </div>
   );

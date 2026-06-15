@@ -24,9 +24,11 @@ export function ExplorarPage() {
   return (
     <div className="explorar-page">
       <ZoneHeader />
-      <MapView />
-      {currentStation && <CameraFeed />}
-      <SpottedList onSpeciesClick={setSelectedBird} />
+      <div className="explorar-scroll">
+        <MapView />
+        {currentStation && <CameraFeed />}
+        <SpottedList onSpeciesClick={setSelectedBird} />
+      </div>
     </div>
   );
 }

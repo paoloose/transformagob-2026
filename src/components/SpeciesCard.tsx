@@ -15,25 +15,18 @@ export function SpeciesCard({ bird, onClick, discovered = true, showInfo = false
       className={`species-card ${!discovered ? "undiscovered" : ""}`}
       onClick={onClick}
       type="button"
-      disabled={!discovered}
     >
       <div className="species-card-image">
-        {discovered ? (
-          <img src={getBirdImage(bird, 0)} alt={bird.common_name} loading="lazy" />
-        ) : (
-          <img
-            src={getBirdImage(bird, 0)}
-            alt=""
-            loading="lazy"
-            className="species-card-blurred"
-          />
-        )}
+        <img
+          src={getBirdImage(bird, 0)}
+          alt={bird.common_name}
+          loading="lazy"
+          className={!discovered ? "species-card-grayscale" : ""}
+        />
       </div>
       <div className="species-card-info">
-        <span className="species-card-name">
-          {discovered ? bird.common_name : "???"}
-        </span>
-        {discovered && showInfo && (
+        <span className="species-card-name">{bird.common_name}</span>
+        {(discovered ? showInfo : true) && (
           <div className="species-card-meta">
             <span className="species-card-scientific">{bird.scientific_name}</span>
             <span className="species-card-size">{bird.size}</span>
