@@ -6,9 +6,14 @@
 
 Arenilla Go is a mobile-first interactive web platform for the Humedal Costero Poza de la Arenilla (HCPA) in La Punta, Callao. Visitors scan QR codes placed along the walking path to discover and learn about bird species in real time. The experience is inspired by nature exploration games like Pokemon GO — visitors use their phone camera to "find" birds, build a digital collection, and learn about wetland biodiversity.
 
+## App Name
+
+**Arenilla Go**
+
 ## Stack
 
 - **Frontend**: React 19 + TypeScript + Vite
+- **UI Design**: Use the `frontend` skill during implementation
 - **Auth**: Clerk (Google sign-in)
 - **3D**: Three.js / React Three Fiber for interactive 3D bird viewers (species detail cards only, no AR camera overlay)
 - **i18n**: Spanish (primary) + English, from day one
