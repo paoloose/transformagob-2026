@@ -246,3 +246,150 @@ body {
   text-align: center;
   color: var(--gray-500);
 }
+
+.species-detail {
+  padding: 0;
+}
+
+.back-btn {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: var(--ocean-light);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.species-detail-hero {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.species-detail-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.species-detail-photos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.species-detail-photos img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.model-3d-viewer {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--gray-100);
+}
+
+.species-detail-info {
+  padding: 1rem;
+}
+
+.species-detail-info h1 {
+  font-size: 1.3rem;
+  color: var(--ocean-deep);
+}
+
+.scientific-name {
+  font-style: italic;
+  color: var(--gray-500);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.species-detail-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.cites-badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: var(--sunset);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.species-detail-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.species-detail-section {
+  margin-bottom: 0.75rem;
+}
+
+.species-detail-section h3 {
+  font-size: 0.9rem;
+  color: var(--ocean-mid);
+  margin-bottom: 0.25rem;
+}
+
+.species-detail-section p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.audio-player {
+  margin: 0.75rem 0;
+}
+
+.audio-player-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--seafoam);
+  background: var(--white);
+  color: var(--ocean-deep);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.discover-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--seafoam), var(--ocean-light));
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.discovered-label {
+  text-align: center;
+  padding: 0.75rem;
+  color: var(--seafoam);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.toggle-btn {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  background: var(--ocean-deep);
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
