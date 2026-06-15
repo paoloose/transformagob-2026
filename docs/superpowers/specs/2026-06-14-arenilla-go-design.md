@@ -1,5 +1,7 @@
 # Arenilla Go — Design Spec
 
+> **Note:** This spec is intentionally loose and subject to modification. Details will evolve during implementation as we learn what works. Nothing here is set in stone — iterate freely.
+
 ## Overview
 
 Arenilla Go is a mobile-first interactive web platform for the Humedal Costero Poza de la Arenilla (HCPA) in La Punta, Callao. Visitors scan QR codes placed along the walking path to discover and learn about bird species in real time. The experience is inspired by nature exploration games like Pokemon GO — visitors use their phone camera to "find" birds, build a digital collection, and learn about wetland biodiversity.
