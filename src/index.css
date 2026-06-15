@@ -2,16 +2,19 @@
   --ocean-deep: #0c2d48;
   --ocean-mid: #145374;
   --ocean-light: #2e8bc0;
+  --ocean-bar: #145374;
   --seafoam: #4dbfa0;
   --sand: #d4b483;
-  --sand-light: #f0e4cf;
+  --sand-light: #f5efe6;
   --sunset: #e07a3a;
   --sunset-light: #f4a261;
   --white: #ffffff;
+  --gray-50: #fafafa;
   --gray-100: #f5f5f5;
   --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
   --gray-500: #737373;
-  --gray-800: #262626;
+  --gray-800: #1a1a1a;
   --iucn-lc: #4caf50;
   --iucn-nt: #ff9800;
   --iucn-vu: #ff5722;
@@ -38,6 +41,7 @@ body {
   height: 100dvh;
   max-width: 480px;
   margin: 0 auto;
+  background: var(--white);
 }
 
 .app-content {
@@ -50,10 +54,9 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0.5rem 0;
-  background: var(--white);
-  border-top: 1px solid var(--gray-200);
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0.4rem 0;
+  background: var(--ocean-bar);
+  border-top: none;
 }
 
 .tab-item {
@@ -63,15 +66,15 @@ body {
   gap: 0.15rem;
   border: none;
   background: none;
-  color: var(--gray-500);
+  color: rgba(255,255,255,0.6);
   font-size: 0.65rem;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   transition: color 0.2s;
 }
 
 .tab-item.active {
-  color: var(--ocean-light);
+  color: var(--white);
 }
 
 .tab-item svg {
@@ -92,8 +95,8 @@ body {
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 0.15s;
   width: 100%;
 }
 
@@ -119,8 +122,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gray-200);
-  color: var(--gray-500);
+  background: var(--gray-100);
+  color: var(--gray-300);
   font-size: 2rem;
   font-weight: bold;
 }
@@ -157,7 +160,7 @@ body {
   display: inline-block;
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
-  background: var(--seafoam);
+  background: var(--ocean-light);
   color: white;
   font-size: 0.7rem;
   font-weight: 600;
@@ -165,13 +168,53 @@ body {
 
 .zone-header {
   padding: 0.75rem 1rem;
-  background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-mid));
+  background: var(--ocean-bar);
   color: white;
+}
+
+.zone-header-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .zone-header-station h2 {
   font-size: 1.1rem;
   font-weight: 700;
+}
+
+.zone-change-btn {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.zone-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.zone-selector-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.zone-selector-btn:active {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.6);
 }
 
 .zone-header-tide {
@@ -188,7 +231,7 @@ body {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  background: black;
+  background: #1a1a1a;
 }
 
 .camera-feed-video {
@@ -222,6 +265,11 @@ body {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
+}
+
+.explorar-page {
+  display: flex;
+  flex-direction: column;
 }
 
 .spotted-section {
@@ -368,7 +416,7 @@ body {
   padding: 0.75rem;
   border-radius: 12px;
   border: none;
-  background: linear-gradient(135deg, var(--seafoam), var(--ocean-light));
+  background: var(--seafoam);
   color: white;
   font-size: 1rem;
   font-weight: 700;
@@ -401,13 +449,14 @@ body {
   background: var(--white);
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid var(--gray-200);
 }
 
 .mission-tab {
   flex: 1;
   padding: 0.75rem;
   border: none;
-  background: var(--gray-100);
+  background: var(--white);
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 600;
@@ -416,7 +465,7 @@ body {
 }
 
 .mission-tab.active {
-  background: var(--ocean-light);
+  background: var(--ocean-bar);
   color: white;
 }
 
@@ -467,7 +516,7 @@ body {
   padding: 0.75rem;
   border-radius: 12px;
   border: none;
-  background: linear-gradient(135deg, var(--sunset), var(--sunset-light));
+  background: var(--sunset);
   color: white;
   font-size: 1rem;
   font-weight: 700;
@@ -661,7 +710,7 @@ body {
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--seafoam), var(--ocean-light));
+  background: var(--seafoam);
   border-radius: 999px;
   transition: width 0.5s;
 }
@@ -702,8 +751,7 @@ body {
 }
 
 .badge-item.locked {
-  opacity: 0.4;
-  filter: grayscale(1);
+  opacity: 0.35;
 }
 
 .badge-icon {
@@ -738,7 +786,7 @@ body {
   padding: 0.75rem;
   border-radius: 12px;
   border: none;
-  background: var(--ocean-light);
+  background: var(--ocean-bar);
   color: white;
   font-size: 0.9rem;
   font-weight: 600;
@@ -781,7 +829,7 @@ body {
 }
 
 .toggle-opt.active {
-  background: var(--ocean-light);
+  background: var(--ocean-bar);
   color: white;
 }
 
@@ -803,13 +851,13 @@ body {
   align-items: center;
   padding: 1rem;
   border-radius: 12px;
-  background: var(--white);
+  background: var(--sand-light);
 }
 
 .stat-value {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--ocean-light);
+  color: var(--ocean-bar);
 }
 
 .stat-label {
@@ -827,6 +875,12 @@ body {
   font-size: 0.85rem;
   line-height: 1.6;
   color: var(--gray-800);
+}
+
+.map-view-full {
+  width: 100%;
+  height: 55vh;
+  overflow: hidden;
 }
 
 .map-view {

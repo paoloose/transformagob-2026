@@ -7,13 +7,15 @@ export const es = {
   },
   explorar: {
     spottedNow: "Avistadas ahora",
-    noSpecies: "No se detectaron especies en este momento",
+    noSpecies: "Selecciona una zona en el mapa para comenzar",
     tideHigh: "Marea alta",
     tideLow: "Marea baja",
     tideMedium: "Marea media",
     discovered: "¡Descubierta!",
     discover: "Descubrir",
     signInToSave: "Inicia sesión para guardar",
+    selectStation: "Selecciona una zona",
+    changeStation: "Cambiar zona",
   },
   misiones: {
     modoExplorador: "Modo Explorador",

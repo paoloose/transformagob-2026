@@ -6,16 +6,15 @@ import "./i18n";
 import App from "./App.tsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-const clerkEnabled = PUBLISHABLE_KEY && PUBLISHABLE_KEY.startsWith("pk_");
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing VITE_CLERK_PUBLISHABLE_KEY");
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {clerkEnabled ? (
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-        <App />
-      </ClerkProvider>
-    ) : (
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <App />
-    )}
+    </ClerkProvider>
   </StrictMode>
 );

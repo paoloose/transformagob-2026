@@ -6,10 +6,12 @@ import { SpeciesDetail } from "../../components/SpeciesDetail";
 import { MapView } from "../../components/MapView";
 import { loadBirds } from "../../data/birds";
 import type { Bird } from "../../types/bird";
+import { useAppStore } from "../../store/useAppStore";
 
 export function ExplorarPage() {
   const [selectedBird, setSelectedBird] = useState<Bird | null>(null);
   const [birds, setBirds] = useState<Bird[]>([]);
+  const { currentStation } = useAppStore();
 
   useEffect(() => {
     loadBirds().then(setBirds);
@@ -20,10 +22,10 @@ export function ExplorarPage() {
   }
 
   return (
-    <div className="page explorar-page">
+    <div className="explorar-page">
       <ZoneHeader />
-      <CameraFeed />
       <MapView />
+      {currentStation && <CameraFeed />}
       <SpottedList onSpeciesClick={setSelectedBird} />
     </div>
   );
