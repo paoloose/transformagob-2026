@@ -8,7 +8,7 @@ export interface Detection {
   lastSeen: string;
 }
 
-export function generateMockDetections(stationId: StationId, _birds: Bird[]): Detection[] {
+export function generateMockDetections(stationId: StationId): Detection[] {
   const station = STATIONS.find((s) => s.id === stationId);
   if (!station) return [];
 
@@ -33,7 +33,7 @@ export function generateMockDetections(stationId: StationId, _birds: Bird[]): De
 }
 
 export function getSpottedBirds(stationId: StationId, birds: Bird[]): Bird[] {
-  const detections = generateMockDetections(stationId, birds);
+  const detections = generateMockDetections(stationId);
   return detections
     .map((d) => birds.find((b) => b.scientific_name === d.birdId))
     .filter((b): b is Bird => b !== undefined);
