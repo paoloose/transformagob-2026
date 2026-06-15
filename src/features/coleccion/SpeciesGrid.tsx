@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { loadBirds } from "../../data/birds";
 import { useDiscoveries } from "../../store/useDiscoveries";
 import { SpeciesCard } from "../../components/SpeciesCard";
@@ -9,7 +10,11 @@ import { deriveBirdType } from "../../data/birds";
 
 export function SpeciesGrid() {
   const [birds, setBirds] = useState<Bird[]>([]);
-  const [selectedBird, setSelectedBird] = useState<Bird | null>(null);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const birdQuery = searchParams.get("bird");
+
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState<string>("");
   const { isDiscovered } = useDiscoveries();
@@ -35,11 +40,17 @@ export function SpeciesGrid() {
     return result;
   }, [birds, search, filterType]);
 
+  const selectedBird = birds.find(b => b.scientific_name === birdQuery) || null;
+
+  const handleSpeciesClick = (bird: Bird) => {
+    navigate(`${location.pathname}?bird=${encodeURIComponent(bird.scientific_name)}`);
+  };
+
   if (selectedBird) {
     return (
       <SpeciesDetail
         bird={selectedBird}
-        onBack={() => setSelectedBird(null)}
+        onBack={() => navigate(-1)}
         birds={birds}
       />
     );
@@ -90,7 +101,7 @@ export function SpeciesGrid() {
                 bird={bird}
                 discovered
                 showInfo
-                onClick={() => setSelectedBird(bird)}
+                onClick={() => handleSpeciesClick(bird)}
               />
             ))}
           </div>
@@ -106,7 +117,7 @@ export function SpeciesGrid() {
                 key={bird.scientific_name}
                 bird={bird}
                 discovered={false}
-                onClick={() => setSelectedBird(bird)}
+                onClick={() => handleSpeciesClick(bird)}
               />
             ))}
           </div>

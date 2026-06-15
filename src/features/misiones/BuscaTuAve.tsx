@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { loadBirds, deriveSizeCategory, deriveBirdType, type BirdType } from "../../data/birds";
 import { useAppStore } from "../../store/useAppStore";
 import { SpeciesCard } from "../../components/SpeciesCard";
@@ -61,9 +62,13 @@ export function BuscaTuAve() {
     seasonality: "",
   });
   const [results, setResults] = useState<Bird[]>([]);
-  const [selectedBird, setSelectedBird] = useState<Bird | null>(null);
   const [searched, setSearched] = useState(false);
   const { t } = useTranslation();
+
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const birdQuery = searchParams.get("bird");
 
   useEffect(() => {
     loadBirds().then(setBirds);
@@ -85,11 +90,17 @@ export function BuscaTuAve() {
     setSearched(true);
   };
 
+  const selectedBird = birds.find(b => b.scientific_name === birdQuery) || null;
+
+  const handleSpeciesClick = (bird: Bird) => {
+    navigate(`${location.pathname}?bird=${encodeURIComponent(bird.scientific_name)}`);
+  };
+
   if (selectedBird) {
     return (
       <SpeciesDetail
         bird={selectedBird}
-        onBack={() => setSelectedBird(null)}
+        onBack={() => navigate(-1)}
         birds={birds}
       />
     );
@@ -230,7 +241,7 @@ export function BuscaTuAve() {
               <SpeciesCard
                 key={bird.scientific_name}
                 bird={bird}
-                onClick={() => setSelectedBird(bird)}
+                onClick={() => handleSpeciesClick(bird)}
               />
             ))}
           </div>

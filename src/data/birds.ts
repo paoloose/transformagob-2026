@@ -18,7 +18,7 @@ export function getBirdImage(bird: Bird, index: number = 0): string {
 }
 
 export function getBirdModelPath(_bird: Bird): string {
-  return "/db/models/larus_belcheri.glb";
+  return "/db/models/seagull.glb";
 }
 
 export function getBirdAudioPath(_bird: Bird): string {

@@ -5,29 +5,36 @@ import { MisionesPage } from "../features/misiones/MisionesPage";
 import { ColeccionPage } from "../features/coleccion/ColeccionPage";
 import { PerfilPage } from "../features/perfil/PerfilPage";
 import { useEffect } from "react";
-
-const TAB_PAGES: Record<string, React.ComponentType> = {
-  explorar: ExplorarPage,
-  misiones: MisionesPage,
-  coleccion: ColeccionPage,
-  perfil: PerfilPage,
-};
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 export function AppShell() {
-  const { activeTab, tabKey, setActiveTab, initStation } = useAppStore();
+  const { initStation } = useAppStore();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     initStation();
   }, [initStation]);
 
-  const PageComponent = TAB_PAGES[activeTab] || ExplorarPage;
+  const activeTab = location.pathname === "/" 
+    ? "explorar" 
+    : (location.pathname.substring(1) as "explorar" | "misiones" | "coleccion" | "perfil");
+
+  const handleTabChange = (tab: string) => {
+    navigate(tab === "explorar" ? "/" : `/${tab}`);
+  };
 
   return (
     <div className="app-shell">
       <main className="app-content">
-        <PageComponent key={`${activeTab}-${tabKey}`} />
+        <Routes>
+          <Route path="/" element={<ExplorarPage />} />
+          <Route path="/misiones" element={<MisionesPage />} />
+          <Route path="/coleccion" element={<ColeccionPage />} />
+          <Route path="/perfil" element={<PerfilPage />} />
+        </Routes>
       </main>
-      <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
+      <TabBar activeTab={activeTab} onTabChange={handleTabChange} />
     </div>
   );
 }

@@ -142,10 +142,11 @@ body {
 }
 
 .species-card-info {
-  padding: 0.5rem;
+  padding: 0.75rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
 }
 
 .species-card-name {
@@ -468,11 +469,25 @@ body {
 }
 
 .discovered-label {
-  text-align: center;
-  padding: 0.75rem;
-  color: var(--seafoam);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.5rem 1rem 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background-color: var(--seafoam);
+  color: white;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(77, 191, 160, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.discovered-label:active {
+  transform: scale(0.98);
 }
 
 .species-detail-model-toggle {

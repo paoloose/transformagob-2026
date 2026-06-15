@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { useAppStore } from "../../store/useAppStore";
 import { useDiscoveries } from "../../store/useDiscoveries";
 import { loadBirds, getBirdImage } from "../../data/birds";
@@ -17,7 +18,12 @@ export function ModoExplorador() {
   const [cameraOpen, setCameraOpen] = useState(false);
   const [identifying, setIdentifying] = useState(false);
   const [encounterBird, setEncounterBird] = useState<Bird | null>(null);
-  const [selectedBird, setSelectedBird] = useState<Bird | null>(null);
+
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const birdQuery = searchParams.get("bird");
+
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -44,11 +50,17 @@ export function ModoExplorador() {
     }, 2000);
   };
 
+  const selectedBird = birds.find(b => b.scientific_name === birdQuery) || null;
+
+  const handleSpeciesClick = (bird: Bird) => {
+    navigate(`${location.pathname}?bird=${encodeURIComponent(bird.scientific_name)}`);
+  };
+
   if (selectedBird) {
     return (
       <SpeciesDetail
         bird={selectedBird}
-        onBack={() => setSelectedBird(null)}
+        onBack={() => navigate(-1)}
         birds={birds}
       />
     );
@@ -72,7 +84,7 @@ export function ModoExplorador() {
       <EncounterAnimation
         bird={encounterBird}
         onComplete={() => {
-          setSelectedBird(encounterBird);
+          handleSpeciesClick(encounterBird);
           setEncounterBird(null);
         }}
       />
@@ -87,7 +99,7 @@ export function ModoExplorador() {
           <button
             key={bird.scientific_name}
             className="nearby-thumb"
-            onClick={() => setSelectedBird(bird)}
+            onClick={() => handleSpeciesClick(bird)}
             type="button"
           >
             <img src={getBirdImage(bird, 0)} alt={bird.common_name} />
