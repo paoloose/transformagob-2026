@@ -13,7 +13,7 @@ Arenilla Go is a mobile-first interactive web platform for the Humedal Costero P
 ## Stack
 
 - **Frontend**: React 19 + TypeScript + Vite
-- **UI Design**: Use the `frontend` skill during implementation
+- **UI Design**: Use the `frontend-design` skill during implementation
 - **Auth**: Clerk (Google sign-in)
 - **3D**: Three.js / React Three Fiber for interactive 3D bird viewers (species detail cards only, no AR camera overlay)
 - **i18n**: Spanish (primary) + English, from day one
@@ -190,6 +190,19 @@ interface Badge {
 - 3D models: ~10 species, stored in `public/db/models/` — species with missing models show photo carousel fallback
 - Audio: 23 species with vocalizations, stored in `public/db/audio/`
 - Prerecorded videos: stored in `public/db/videos/`
+
+## Clerk Auth Setup
+
+Clerk app ID: `app_3EQKUf5EQ92WR1YtRRb0wI6eGo3`
+
+Setup steps:
+1. Install Clerk CLI: `npm install -g clerk`
+2. Sign in: `clerk auth login`
+3. Initialize in project: `clerk init --app app_3EQKUf5EQ92WR1YtRRb0wI6eGo3`
+4. Since this is a React + Vite project, use `@clerk/clerk-react` package
+5. Verify with `clerk doctor`
+6. Ensure sign-in/sign-up controls are visible in the Perfil tab
+7. Use `SignInButton`, `SignUpButton`, `UserButton` components from `@clerk/clerk-react`
 
 ## Auth Flow
 
