@@ -393,3 +393,250 @@ body {
   cursor: pointer;
   font-size: 0.8rem;
 }
+
+.mission-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1rem;
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mission-tab {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  background: var(--gray-100);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  transition: all 0.2s;
+}
+
+.mission-tab.active {
+  background: var(--ocean-light);
+  color: white;
+}
+
+.modo-explorador {
+  padding: 1rem;
+}
+
+.modo-explorador h3 {
+  font-size: 1rem;
+  color: var(--ocean-deep);
+  margin-bottom: 0.75rem;
+}
+
+.nearby-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.nearby-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white);
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nearby-thumb img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.nearby-thumb span {
+  font-size: 0.65rem;
+  padding: 0.25rem;
+  text-align: center;
+  color: var(--ocean-deep);
+}
+
+.open-camera-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--sunset), var(--sunset-light));
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bird-camera {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.bird-camera video {
+  flex: 1;
+  object-fit: cover;
+}
+
+.bird-camera-controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(0,0,0,0.7);
+}
+
+.bird-camera-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.capture-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid white !important;
+  background: rgba(255,255,255,0.3) !important;
+  font-size: 1.5rem !important;
+}
+
+.identifying-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 1rem;
+  color: var(--ocean-deep);
+}
+
+.identifying-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--gray-200);
+  border-top-color: var(--ocean-light);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.encounter-animation {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.encounter-card {
+  text-align: center;
+  animation: encounter-pop 0.5s ease-out;
+}
+
+.encounter-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+}
+
+.encounter-card h2 {
+  color: white;
+  font-size: 1.5rem;
+}
+
+@keyframes encounter-pop {
+  0% { transform: scale(0); opacity: 0; }
+  80% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.busca-tu-ave {
+  padding: 0;
+}
+
+.busca-tu-ave h3 {
+  font-size: 1rem;
+  color: var(--ocean-deep);
+  margin-bottom: 0.75rem;
+}
+
+.trait-group {
+  margin-bottom: 1rem;
+}
+
+.trait-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ocean-mid);
+  margin-bottom: 0.4rem;
+}
+
+.trait-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.trait-btn {
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-800);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.trait-btn.active {
+  background: var(--ocean-light);
+  border-color: var(--ocean-light);
+  color: white;
+}
+
+.search-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: none;
+  background: var(--seafoam);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 0.5rem 0 1rem;
+}
+
+.search-results h4 {
+  font-size: 0.9rem;
+  color: var(--ocean-deep);
+  margin-bottom: 0.75rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}

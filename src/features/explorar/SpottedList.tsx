@@ -12,13 +12,11 @@ interface SpottedListProps {
 
 export function SpottedList({ onSpeciesClick }: SpottedListProps) {
   const { currentStation } = useAppStore();
-  const [birds, setBirds] = useState<Bird[]>([]);
   const [spotted, setSpotted] = useState<Bird[]>([]);
   const { t } = useTranslation();
 
   useEffect(() => {
     loadBirds().then((allBirds) => {
-      setBirds(allBirds);
       if (currentStation) {
         setSpotted(getSpottedBirds(currentStation, allBirds));
       }
