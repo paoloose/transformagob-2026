@@ -162,3 +162,87 @@ body {
   font-size: 0.7rem;
   font-weight: 600;
 }
+
+.zone-header {
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-mid));
+  color: white;
+}
+
+.zone-header-station h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.zone-header-tide {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.zone-header-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.camera-feed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: black;
+}
+
+.camera-feed-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-feed-label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.camera-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f44336;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.spotted-section {
+  padding: 0.75rem 1rem;
+}
+
+.spotted-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ocean-deep);
+  margin-bottom: 0.5rem;
+}
+
+.spotted-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.spotted-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--gray-500);
+}
