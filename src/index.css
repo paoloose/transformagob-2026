@@ -100,7 +100,20 @@ body {
   width: 100%;
 }
 
-.species-card:active {
+.species-card.undiscovered {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.species-card.undiscovered .species-card-name {
+  color: var(--gray-500);
+}
+
+.species-card-blurred {
+  filter: grayscale(1) blur(2px) brightness(0.8);
+}
+
+.species-card:active:not(.undiscovered) {
   transform: scale(0.97);
 }
 
@@ -116,16 +129,21 @@ body {
   object-fit: cover;
 }
 
-.species-card-silhouette {
-  width: 100%;
-  height: 100%;
+.species-card-meta {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--gray-100);
-  color: var(--gray-300);
-  font-size: 2rem;
-  font-weight: bold;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.species-card-scientific {
+  font-size: 0.55rem;
+  font-style: italic;
+  color: var(--gray-500);
+}
+
+.species-card-size {
+  font-size: 0.6rem;
+  color: var(--gray-500);
 }
 
 .species-card-info {
@@ -889,4 +907,71 @@ body {
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 1rem;
+}
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--gray-300);
+  background: var(--white);
+  font-size: 0.85rem;
+  color: var(--gray-800);
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--ocean-light);
+}
+
+.search-filter {
+  padding: 0.6rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--gray-300);
+  background: var(--white);
+  font-size: 0.8rem;
+  color: var(--gray-800);
+  outline: none;
+}
+
+.species-grid-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.species-grid-section {
+  margin-bottom: 1.25rem;
+}
+
+.species-grid-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ocean-deep);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.undiscovered-label {
+  color: var(--gray-500);
+}
+
+.zone-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.coleccion-page h2,
+.misiones-page .mission-tabs,
+.perfil-page > *:first-child {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--sand-light);
 }

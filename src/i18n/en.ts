@@ -46,6 +46,10 @@ export const en = {
     progress: "{{discovered}} of {{total}} species discovered",
     badges: "Achievements",
     locked: "???",
+    searchPlaceholder: "Search species...",
+    allTypes: "All",
+    discovered: "Discovered",
+    undiscovered: "Undiscovered",
   },
   perfil: {
     signIn: "Sign in",

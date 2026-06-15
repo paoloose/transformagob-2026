@@ -12,13 +12,40 @@ interface DiscoveriesState {
 
 const STORAGE_KEY = "arenilla-go-discoveries";
 
+const SEED_SPECIES = [
+  "Larus belcheri",
+  "Chroicocephalus cirrocephalus",
+  "Sula variegata",
+  "Phalacrocorax brasilianus",
+  "Pelecanus thagus",
+  "Ardea alba",
+  "Egretta thula",
+  "Numenius phaeopus",
+  "Charadrius vociferus",
+  "Calidris pusilla",
+  "Zenaida meloda",
+  "Haematopus palliatus",
+];
+
 function loadFromStorage(): Discovery[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return parsed;
+    }
   } catch {
-    return [];
+    // ignore
   }
+
+  const seed: Discovery[] = SEED_SPECIES.map((birdId, i) => ({
+    birdId,
+    stationId: (["A", "B", "C", "D"] as const)[i % 4] as StationId,
+    discoveredAt: new Date(Date.now() - (SEED_SPECIES.length - i) * 86400000).toISOString(),
+  }));
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
+  return seed;
 }
 
 function saveToStorage(discoveries: Discovery[]) {

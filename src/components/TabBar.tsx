@@ -1,17 +1,13 @@
 import { useTranslation } from "react-i18next";
 import type { TabId } from "../store/useAppStore";
+import telescopeIcon from "../../public/telescope.png";
 
 interface TabBarProps {
   activeTab: TabId;
   onTabChange: (tab: TabId) => void;
 }
 
-const tabs: { id: TabId; iconPath: string }[] = [
-  {
-    id: "explorar",
-    iconPath:
-      "M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z",
-  },
+const svgTabs: { id: TabId; iconPath: string }[] = [
   {
     id: "misiones",
     iconPath:
@@ -34,7 +30,14 @@ export function TabBar({ activeTab, onTabChange }: TabBarProps) {
 
   return (
     <nav className="tab-bar">
-      {tabs.map((tab) => (
+      <button
+        className={`tab-item ${activeTab === "explorar" ? "active" : ""}`}
+        onClick={() => onTabChange("explorar")}
+      >
+        <img src={telescopeIcon} alt="" width="22" height="22" />
+        <span>{t("tabs.explorar")}</span>
+      </button>
+      {svgTabs.map((tab) => (
         <button
           key={tab.id}
           className={`tab-item ${activeTab === tab.id ? "active" : ""}`}
@@ -46,8 +49,8 @@ export function TabBar({ activeTab, onTabChange }: TabBarProps) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            width="24"
-            height="24"
+            width="22"
+            height="22"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d={tab.iconPath} />
           </svg>
